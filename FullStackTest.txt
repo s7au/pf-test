@@ -1,0 +1,91 @@
+1.
+Private fields and methods can only be accessed within the class itself.
+Protected fields and methods can be accessed within the class itself AND by classes within the same package or a sub-class.
+
+2.
+new int[10]
+
+3.
+void getDivisibleByNineButNotTwenty() {
+	for (int i = 200; i <= 1000; i++) {
+		if (i%9 == 0 && i%20 != 0) {
+			System.out.println(i);
+		}			
+	}
+}
+
+4.
+boolean isPalindrome(String word) {
+	if (word) {
+		String reverse = new StringBuilder(word).reverse().toString();
+		return word.compareTo(reverse) == 0;
+	} else {
+		return false; // assume null is not a palindrome as not a word
+	}
+}
+
+5.
+5
+5
+
+6.
+SELECT * FROM movies WHERE( id % 2 ) = 1 AND NOT (description LIKE "%3D%") ORDER BY rating DESC;
+
+7.
+Integer getFibonacci(Integer n) {
+	if (n == 0) return 0;
+	if (n == 1) return 0;
+	if (n == 2) return 1;
+	Integer twoBack = 0;
+	Integer oneBack = 1;
+	Integer current = 1;
+	for (int i = 3; i < n; i++) {
+		twoBack = oneBack;
+		oneBack = current;
+		current = twoBack + oneBack;
+	}
+	return current;
+}
+
+8.
+boolean divisibleByThree(String number) {
+	int accumulator = 0;
+	for (int i = 0; i < number.length(); i++) {
+		accumulator += number.charAt(i) - ‘0’;
+	}
+	if (accumulator != 0 && accumulator%3 == 0) return true;
+	return false;
+}
+
+9.
+int getGcd(int numberOne, int numberTwo) {
+	if (numberTwo == 0) return numberOne;
+	return getGcd(numberTwo, numberOne%numberTwo);
+}
+String gcdOfStrings(String str1, String str2) {
+	if (str1 == str2) return str1;
+	if (!(str1 + str2).equals(str2 + str1)) return "";
+	int str1Length = str1.length();
+	int str2Length = str2.length();
+	int lengthGcd = getGcd(str1Length, str2Length);
+	return str1.substring(0, lengthGcd);
+}
+
+10.
+float getSlope(int[] coordinatesOne, int[] coordinateTwo) {
+	return (coordinateTwo[1]-coordinatesOne[1])/(coordinateTwo[0]-coordinatesOne[0]);
+}
+boolean checkStraightLine(int[][] coordinates) {
+	if (coordinates.length < 3) return true; // technically a single point exists on a straight line
+	float slope = getSlope(coordinates[0], coordinates[1]);
+	for (int i = 2; i < coordinates.length; i++) {
+        	if (Float.compare(getSlope(coordinates[i-1], coordinates[i]), slope) != 0) {
+			return false;
+		}
+	}
+	return true;
+}
+
+Time complexity: O(n)
+Space complexity: O(1)
+
